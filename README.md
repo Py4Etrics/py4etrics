@@ -1,3 +1,5 @@
+[![PyPI version fury.io](https://badge.fury.io/py/py4etrics.svg)](https://pypi.python.org/pypi/py4etrics/)
+
 # What Is This Module For
 
 This module is for
