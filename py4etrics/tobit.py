@@ -1,6 +1,5 @@
 """
 Created by Tetsu Haruyama
-Last modified 13 June 2020
 """
 
 import warnings

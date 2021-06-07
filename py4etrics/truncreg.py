@@ -1,6 +1,5 @@
 """
 Created by Tetsu Haruyama
-Last modified 13 July 2019
 """
 
 import numpy as np

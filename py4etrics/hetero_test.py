@@ -33,7 +33,6 @@ hetprobit inlf nwifeinc educ exper expersq age kidslt6 kidsge6, het(nwifeinc edu
 ----- Stata code ends -----
 
 Created by Tetsugen Haruyama
-Modified: 12 May 2020
 '''
 
 

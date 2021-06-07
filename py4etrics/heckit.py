@@ -5,7 +5,6 @@ This is a modified version of the code available at
 https://github.com/statsmodels/statsmodels/blob/92ea62232fd63c7b60c60bee4517ab3711d906e3/statsmodels/regression/Heckit.py
 
 Created by Tetsu Haruyama
-Last Modified 2 July 2019
 """
 
 import numpy as np
