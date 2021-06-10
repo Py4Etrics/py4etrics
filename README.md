@@ -1,6 +1,6 @@
 [![PyPI version fury.io](https://badge.fury.io/py/py4etrics.svg)](https://pypi.python.org/pypi/py4etrics/)
 [![CodeQL](https://github.com/Py4Etrics/py4etrics/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/Py4Etrics/py4etrics/actions?query=workflow%codeql-analysis)
-
+[![Downloads](https://static.pepy.tech/personalized-badge/py4etrics?period=total&units=international_system&left_color=grey&right_color=orange&left_text=Downloads)](https://pepy.tech/project/py4etrics)
 
 # What Is This Module For
 
