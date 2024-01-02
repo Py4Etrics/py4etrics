@@ -69,7 +69,7 @@ def het_test_logit(results):
     (2) https://www.statalist.org/forums/forum/general-stata-discussion/general/1292180-test-for-heteroskedasticity-in-logit-probit-models
     """
 
-    yhat = results.predict(linear=True)  # original fitted values
+    yhat = results.predict(which="linear")  # original fitted values
     exog_var = results.model.exog  # original exog
     exog_df = pd.DataFrame(exog_var)  # convert to DataFrame
 
@@ -91,7 +91,7 @@ def het_test_logit(results):
 
     A = np.identity(len(res_test.params))
     A = A[-num_para:,:]
-    s = res_test.wald_test(A)
+    s = res_test.wald_test(A, scalar=True)
     return print('H0: homoscedasticity\nHA: heteroscedasticity\n',
                 '\nWald test:', "%#2.3f" % s.statistic[0][0],
                 '\np-value:', "%#7.3f" % s.pvalue, '\ndf freedom:', "%#3.0f" % s.df_denom)
@@ -125,7 +125,7 @@ def het_test_probit(results):
     (2) https://www.statalist.org/forums/forum/general-stata-discussion/general/1292180-test-for-heteroskedasticity-in-logit-probit-models
     """
 
-    yhat = results.predict(linear=True)  # original fitted values
+    yhat = results.predict(which="linear")  # original fitted values
     exog_var = results.model.exog  # original exog
     exog_df = pd.DataFrame(exog_var)  # convert to DataFrame
 
@@ -147,7 +147,7 @@ def het_test_probit(results):
 
     A = np.identity(len(res_test.params))
     A = A[-num_para:,:]
-    s = res_test.wald_test(A)
+    s = res_test.wald_test(A, scalar=True)
     return print('H0: homoscedasticity\nHA: heteroscedasticity\n',
                 '\nWald test:', "%#2.3f" % s.statistic[0][0],
                 '\np-value:', "%#7.3f" % s.pvalue, '\ndf freedom:', "%#3.0f" % s.df_denom)

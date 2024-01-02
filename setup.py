@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='py4etrics',
-      version='0.1.7',
+      version='0.1.8',
       author='Tetsu HARUYAMA',
       author_email='haruyama@econ.kobe-u.ac.jp',
       packages=find_packages(),
