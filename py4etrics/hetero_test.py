@@ -13,7 +13,7 @@ Check consistency with Stata using the following
 // https://www.stata.com/manuals13/p_predict.pdf
 // https://www.stata.com/manuals13/rpredict.pdf
 
-import delimited "/Users/Tetsu/Documents/My_Simulation/Python/projects/wooldridge/raw_data/data_csv/mroz.csv"
+import delimited "/Users/tetsu/Documents/My_Simulation/Python/projects/wooldridge/raw_data/data_csv/mroz.csv"
 
 probit inlf nwifeinc educ exper expersq age kidslt6 kidsge6
 
@@ -37,10 +37,8 @@ Created by Tetsugen Haruyama
 
 
 import numpy as np
-from scipy import stats
 import pandas as pd
 import statsmodels.api as sm
-from statsmodels.formula.api import logit, probit
 
 
 def het_test_logit(results):
@@ -60,7 +58,8 @@ def het_test_logit(results):
     Wald test statistic
     p-value
     Degree of Freedom
-        The number of restrictions, which are equivalent to the number of explanatory variables, excluding a constant term
+        The number of restrictions, which are equivalent to the number of
+        explanatory variables, excluding a constant term
 
     References
     ----------
@@ -80,24 +79,26 @@ def het_test_logit(results):
     except ValueError:
         pass
 
-    num_para = exog_df.shape[1] # no of non-constant parameters
+    num_para = exog_df.shape[1]  # no of non-constant parameters
 
     # X = np.exp(yhat).reshape(len(yhat),1) * exog_df.values
-    X = yhat.reshape(len(yhat),1) * exog_df.values
+    X = yhat.reshape(len(yhat), 1) * exog_df.values
 
     endog = results.model.endog
     exog = np.column_stack((results.model.exog, X))
-    res_test = sm.Logit(endog,exog).fit(disp=False)
+    res_test = sm.Logit(endog, exog).fit(disp=False)
 
     A = np.identity(len(res_test.params))
-    A = A[-num_para:,:]
+    A = A[-num_para:, :]
     s = res_test.wald_test(A, scalar=True)
     return print('H0: homoscedasticity\nHA: heteroscedasticity\n',
-                '\nWald test:', "%#2.3f" % s.statistic[0][0],
-                '\np-value:', "%#7.3f" % s.pvalue, '\ndf freedom:', "%#3.0f" % s.df_denom)
+                 f'\nWald test: {s.statistic:.3f}',
+                 f'\np-value: {s.pvalue:.3f}',
+                 f'\ndf freedom: {s.df_denom:.0f}'
+                 )
 
 
-
+# --------------------------------------------------------------
 
 
 def het_test_probit(results):
@@ -116,7 +117,8 @@ def het_test_probit(results):
     Wald test statistic
     p-value
     Degree of Freedom
-        The number of restrictions, which are equivalent to the number of explanatory variables, excluding a constant term
+        The number of restrictions, which are equivalent to the number of
+        explanatory variables, excluding a constant term
 
     References
     ----------
@@ -136,18 +138,20 @@ def het_test_probit(results):
     except ValueError:
         pass
 
-    num_para = exog_df.shape[1] # no of non-constant parameters
+    num_para = exog_df.shape[1]   # no of non-constant parameters
 
     # X = np.exp(yhat).reshape(len(yhat),1) * exog_df.values
-    X = yhat.reshape(len(yhat),1) * exog_df.values
+    X = yhat.reshape(len(yhat), 1) * exog_df.values
 
     endog = results.model.endog
     exog = np.column_stack((results.model.exog, X))
-    res_test = sm.Probit(endog,exog).fit(disp=False)
+    res_test = sm.Probit(endog, exog).fit(disp=False)
 
     A = np.identity(len(res_test.params))
-    A = A[-num_para:,:]
+    A = A[-num_para:, :]
     s = res_test.wald_test(A, scalar=True)
     return print('H0: homoscedasticity\nHA: heteroscedasticity\n',
-                '\nWald test:', "%#2.3f" % s.statistic[0][0],
-                '\np-value:', "%#7.3f" % s.pvalue, '\ndf freedom:', "%#3.0f" % s.df_denom)
+                 f'\nWald test: {s.statistic:.3f}',
+                 f'\np-value: {s.pvalue:.3f}',
+                 f'\ndf freedom: {s.df_denom:.0f}'
+                 )

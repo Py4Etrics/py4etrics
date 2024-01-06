@@ -1,3 +1,5 @@
+v0.1.9, 2024-01-06 -- fix bugs in het_test_probit() and het_test_logit()
+
 v0.1.8, 2024-01-03 -- statsmodelsの仕様変更に伴いhet_test_logit()とhet_test_probit()の修正
 
 v0.1.7, 2021-07-21 -- install_requiesの削除
